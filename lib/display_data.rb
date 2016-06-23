@@ -1,12 +1,13 @@
 module DisplayData
 
   def self.display_all_output(people)
-    puts "Output 1:"
-    display_formatted_lines(sort_by_gender_and_last_name(people))
-    puts "\nOutput 2:"
-    display_formatted_lines(sort_by_dob(people))
-    puts "\nOutput 3:"
-    display_formatted_lines(sort_by_last_name(people))
+    output = "Output 1:\n"
+    output += "#{display_formatted_lines(sort_by_gender_and_last_name(people))}"
+    output += "\nOutput 2:\n"
+    output += "#{display_formatted_lines(sort_by_dob(people))}"
+    output += "\nOutput 3:\n"
+    output += "#{display_formatted_lines(sort_by_last_name(people))}"
+    output
   end
 
   def self.sort_by_last_name(people)
@@ -22,7 +23,9 @@ module DisplayData
   end
 
   def self.display_formatted_lines(sorted_data)
-    sorted_data.each { |person|  puts "#{person.last_name} #{person.first_name} #{person.gender} #{person.dob.strftime("%-m/%-d/%Y")} #{person.color}" }
+    res = ""
+    sorted_data.map { |person|  res += "#{person.last_name} #{person.first_name} #{person.gender} #{person.dob.strftime("%-m/%-d/%Y")} #{person.color}\n" }
+    res
   end
 
 end
